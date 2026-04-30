@@ -1,0 +1,23 @@
+{
+  "name": "it-news-daily",
+  "version": "1.0.0",
+  "description": "Standalone daily IT news dashboard with configurable email delivery.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "it-news",
+    "rss",
+    "email",
+    "dashboard"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.21.2",
+    "node-cron": "^4.2.1",
+    "nodemailer": "^6.10.1",
+    "rss-parser": "^3.13.0"
+  }
+}
