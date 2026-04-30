@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IT News Daily</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Standalone Web Digest</div>
+          <h1>IT News Daily</h1>
+          <p>
+            A self-hosted page that pulls together the day's most relevant IT headlines and sends them to your chosen inboxes.
+          </p>
+          <div class="hero-actions">
+            <button id="refresh-news" class="button button-primary">Refresh news</button>
+            <button id="send-now" class="button button-secondary">Send today's email</button>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="status-grid">
+            <div>
+              <span class="status-label">Sources</span>
+              <strong id="status-sources">-</strong>
+            </div>
+            <div>
+              <span class="status-label">Recipients</span>
+              <strong id="status-recipients">-</strong>
+            </div>
+            <div>
+              <span class="status-label">SMTP</span>
+              <strong id="status-smtp">-</strong>
+            </div>
+            <div>
+              <span class="status-label">Schedule</span>
+              <strong id="status-schedule">-</strong>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <main class="main-grid">
+        <section class="panel settings-panel">
+          <div class="panel-header">
+            <div>
+              <div class="eyebrow">Configuration</div>
+              <h2>Delivery settings</h2>
+            </div>
+            <span id="save-state" class="save-state">Ready</span>
+          </div>
+
+          <form id="config-form">
+            <div class="field-grid two-up">
+              <label>
+                <span>App title</span>
+                <input type="text" id="appTitle" />
+              </label>
+              <label>
+                <span>Digest size</span>
+                <input type="number" id="digestSize" min="5" max="50" />
+              </label>
+            </div>
+
+            <label>
+              <span>Recipient emails</span>
+              <textarea id="recipients" rows="4" placeholder="one@example.com, two@example.com"></textarea>
+            </label>
+
+            <div class="field-grid three-up">
+              <label>
+                <span>Daily send time</span>
+                <input type="time" id="sendTime" />
+              </label>
+              <label>
+                <span>Timezone</span>
+                <input type="text" id="timezone" placeholder="Europe/Lisbon" />
+              </label>
+              <label class="toggle">
+                <span>Auto-send enabled</span>
+                <input type="checkbox" id="autoSendEnabled" />
+              </label>
+            </div>
+
+            <div class="section-divider">SMTP</div>
+
+            <div class="field-grid two-up">
+              <label>
+                <span>SMTP host</span>
+                <input type="text" id="smtpHost" />
+              </label>
+              <label>
+                <span>From email</span>
+                <input type="email" id="smtpFrom" />
+              </label>
+            </div>
+
+            <div class="field-grid three-up">
+              <label>
+                <span>Port</span>
+                <input type="number" id="smtpPort" />
+              </label>
+              <label>
+                <span>User</span>
+                <input type="text" id="smtpUser" />
+              </label>
+              <label>
+                <span>Password</span>
+                <input type="password" id="smtpPass" />
+              </label>
+            </div>
+
+            <label class="toggle inline-toggle">
+              <span>Use secure SMTP</span>
+              <input type="checkbox" id="smtpSecure" />
+            </label>
+
+            <div class="form-actions">
+              <button type="submit" class="button button-primary">Save settings</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="panel news-panel">
+          <div class="panel-header">
+            <div>
+              <div class="eyebrow">Daily Brief</div>
+              <h2>Latest headlines</h2>
+            </div>
+            <span id="news-fetched-at" class="meta-pill">Waiting for refresh</span>
+          </div>
+          <div id="news-list" class="news-list"></div>
+        </section>
+      </main>
+    </div>
+
+    <template id="news-item-template">
+      <article class="news-item">
+        <div class="news-meta">
+          <span class="news-source"></span>
+          <span class="news-category"></span>
+          <span class="news-date"></span>
+        </div>
+        <a class="news-title" target="_blank" rel="noreferrer"></a>
+        <p class="news-summary"></p>
+      </article>
+    </template>
+
+    <script src="/app.js"></script>
+  </body>
+</html>
